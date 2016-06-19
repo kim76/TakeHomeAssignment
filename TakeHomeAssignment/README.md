@@ -125,15 +125,18 @@ This project satisfies the deliverables you asked for.
  <Token i:nil="true"/>
 </TokenRequestResponse>
 ```
+##TO DO
+For the sample assignment I stopped just after meeting the requirements.  The next most importants step for me would be (in no particular order):
+- Add logging
+- Convert the HashProvider to an interface and remove the static methods
+- Provide real security and token authentication
 
 ##More information
 As a caveat:  I am totally unfamiliar with public facing services.  My current work involves inter-service communication so we use a licening system for authentication or in some instances private-public keys.
-Since this is just sample code I went with InMemory data stores for simplicity.  I also know very little about User Authentication and Token creation so the Token is simply the user Guid.  
-A large omission in this sample is the lack of logging code.
+Since this is just sample code I went with InMemory data stores for simplicity.  I also know very little about User Authentication and Token creation so the Token is simply the user Guid. 
 I definitely need to learn more about creating secure tokens but I felt it was beyond the scope of this assignment.  I made a brief attempt to securly store passwords and after a bit of searching I 
 gained a better appreciation of how complex this is.  I might have been better off trying to use OAuth or OpenID, but again I felt that was beyond the scope of this assignment.
 I hope this gives you enough information to get an idea of my coding style. 
-
 
 
 ##Getting Started
