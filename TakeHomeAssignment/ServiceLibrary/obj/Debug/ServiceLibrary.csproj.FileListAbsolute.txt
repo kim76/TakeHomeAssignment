@@ -1,0 +1,6 @@
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\TakeHomeAssignment\ServiceLibrary\bin\Debug\GildedRose.ServiceLibrary.dll.config
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\TakeHomeAssignment\ServiceLibrary\bin\Debug\GildedRose.ServiceLibrary.dll
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\TakeHomeAssignment\ServiceLibrary\bin\Debug\GildedRose.ServiceLibrary.pdb
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\TakeHomeAssignment\ServiceLibrary\obj\Debug\ServiceLibrary.csprojResolveAssemblyReference.cache
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\TakeHomeAssignment\ServiceLibrary\obj\Debug\GildedRose.ServiceLibrary.dll
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\TakeHomeAssignment\ServiceLibrary\obj\Debug\GildedRose.ServiceLibrary.pdb

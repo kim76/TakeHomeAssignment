@@ -1,0 +1,5 @@
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\WebSampleClient\bin\Debug\WebSampleClient.exe.config
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\WebSampleClient\bin\Debug\WebSampleClient.exe
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\WebSampleClient\bin\Debug\WebSampleClient.pdb
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\WebSampleClient\obj\Debug\WebSampleClient.exe
+C:\Users\kbilida.IV\Documents\Kims Visual Studio Projects\GildedRose\WebSampleClient\obj\Debug\WebSampleClient.pdb
