@@ -7,9 +7,11 @@ This project satisfies the deliverables you asked for.
 1. A system that can process the two API requests via HTTP - Refer to GildedRose.ServiceLibrary
 2. Appropriate tests (unit, integration, etc) - Refer to GildedRose.ServiceLibrary.Tests
 3. Explanations: 
- 3. I chose DataContracts for the dataformat because it is easy to implement and share and it's what I'm familiar with from working with. 
+ 3. I chose DataContracts for the dataformat because it is easy to implement and it's what I'm familiar with from working with. 
  3. For authentication I chose a token based system to maintain a RESTful Api.  The users are managed and a valid username and password is required to retrieve a token.  This token can then be used to purchase items. 
   
+![class diagram](GildedRoseClassDiagram.png)
+
  
 **Get All Items**
 ----
@@ -130,6 +132,7 @@ For the sample assignment I stopped just after meeting the requirements.  The ne
 - Add logging
 - Convert the HashProvider to an interface and remove the static methods
 - Provide real security and token authentication
+- Improve performance when using the channel factory to make requests
 
 ##More information
 As a caveat:  I am totally unfamiliar with public facing services.  My current work involves inter-service communication so we use a licening system for authentication or in some instances private-public keys.
