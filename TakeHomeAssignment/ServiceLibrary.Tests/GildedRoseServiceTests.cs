@@ -24,10 +24,11 @@ namespace GildedRose.ServiceLibrary
          var dataRepository = Substitute.For<IDataRepository>();
          var stockCount = 5;
          var item = new Item {StockCount = stockCount};
-         dataRepository.GetItem(new Guid()).ReturnsForAnyArgs(item);
+         var guid = Guid.NewGuid();
+         dataRepository.GetItem(guid).ReturnsForAnyArgs(item);
          var service = new GildedRoseService(dataRepository, authenticator);
-         service.BuyItem("valid", new Guid(), stockCount);
-         Assert.AreEqual(0, item.StockCount, "The stock count of the item must decrease when purchased");
+         var response = service.BuyItem("valid", guid.ToString(), stockCount);
+         Assert.AreEqual(0, item.StockCount, "The stock count of the item must decrease when purchased. " + response.Message);
       }
 
       [Test]
@@ -40,7 +41,7 @@ namespace GildedRose.ServiceLibrary
          var item = new Item {StockCount = stockCount};
          dataRepository.GetItem(new Guid()).ReturnsForAnyArgs(item);
          var service = new GildedRoseService(dataRepository, authenticator);
-         var result = service.BuyItem("valid", new Guid(), stockCount + 1);
+         var result = service.BuyItem("valid", "", stockCount + 1);
          Assert.AreEqual(ResponseStatus.Failed, result.Status,
             "Status must be set to failed when there is insufficient stock.");
       }
@@ -53,7 +54,7 @@ namespace GildedRose.ServiceLibrary
          var dataRepository = Substitute.For<IDataRepository>();
          dataRepository.GetItem(new Guid()).ReturnsForAnyArgs((Item)null);
          var service = new GildedRoseService(dataRepository, authenticator);
-         var result = service.BuyItem("valid", new Guid(), 1);
+         var result = service.BuyItem("valid", "", 1);
          Assert.AreEqual(ResponseStatus.Failed, result.Status,
             "Status must be set to failed when the item doesn't exist.");
       }
@@ -64,7 +65,7 @@ namespace GildedRose.ServiceLibrary
          var authenticator = Substitute.For<IAuthenticator>();
          authenticator.IsTokenValid("").ReturnsForAnyArgs(false);
          var service = new GildedRoseService(Substitute.For<IDataRepository>(), authenticator);
-         var result = service.BuyItem("invalid", new Guid(), 1);
+         var result = service.BuyItem("invalid", "", 1);
          Assert.AreEqual(ResponseStatus.Failed, result.Status,
             "Status must be set to failed when the item does not exist.");
       }
@@ -75,8 +76,18 @@ namespace GildedRose.ServiceLibrary
          var authenticator = Substitute.For<IAuthenticator>();
          authenticator.IsTokenValid("").ReturnsForAnyArgs(false);
          var service = new GildedRoseService(Substitute.For<IDataRepository>(), authenticator);
-         var result = service.BuyItem("invalid", new Guid(), 1);
-         Assert.AreEqual(ResponseStatus.Failed, result.Status, "Status must be set to failed when the token is invalid.");
+         var result = service.BuyItem("invalid token", Guid.NewGuid().ToString(), 1);
+         Assert.AreEqual(ResponseStatus.Unauthorized, result.Status, "Status must be set to Unauthorized when the token is invalid.");
+      }
+
+      [Test]
+      public void BuyItem_TokenThrowsException_RequestFails()
+      {
+         var authenticator = Substitute.For<IAuthenticator>();
+         authenticator.IsTokenValid("").ThrowsForAnyArgs<Exception>();
+         var service = new GildedRoseService(Substitute.For<IDataRepository>(), authenticator);
+         var result = service.BuyItem("invalid token", Guid.NewGuid().ToString(), 1);
+         Assert.AreEqual(ResponseStatus.Unauthorized, result.Status, "Status must be set to Unauthorized when the token is invalid.");
       }
 
       [Test]
@@ -87,12 +98,13 @@ namespace GildedRose.ServiceLibrary
          var dataRepository = Substitute.For<IDataRepository>();
          var stockCount = 5;
          var item = new Item {StockCount = stockCount};
-         dataRepository.GetItem(new Guid()).ReturnsForAnyArgs(item);
+         var guid = Guid.NewGuid();
+         dataRepository.GetItem(guid).ReturnsForAnyArgs(item);
          var service = new GildedRoseService(dataRepository, authenticator);
          var quantityPurchased = 1;
-         service.BuyItem("valid", new Guid(), quantityPurchased);
+         var response = service.BuyItem("valid", guid.ToString(), quantityPurchased);
          Assert.AreEqual(stockCount - quantityPurchased, item.StockCount,
-            "The stock count of the item must decrease when purchased");
+            "The stock count of the item must decrease when purchased. " + response.Message);
       }
 
       [Test]
@@ -102,11 +114,12 @@ namespace GildedRose.ServiceLibrary
          authenticator.IsTokenValid("").ReturnsForAnyArgs(true);
          var dataRepository = Substitute.For<IDataRepository>();
          var item = new Item {StockCount = 5};
-         dataRepository.GetItem(new Guid()).ReturnsForAnyArgs(item);
+         var guid = Guid.NewGuid();
+         dataRepository.GetItem(guid).ReturnsForAnyArgs(item);
          var service = new GildedRoseService(dataRepository, authenticator);
-         var result = service.BuyItem("valid", new Guid(), 1);
+         var result = service.BuyItem("valid", guid.ToString(), 1);
          Assert.AreEqual(ResponseStatus.Success, result.Status,
-            "Status must be set to failed when the token is invalid.");
+            "Purchase should have succeeded. " + result.Message);
       }
 
       [Test]
@@ -115,11 +128,11 @@ namespace GildedRose.ServiceLibrary
          var authenticator = Substitute.For<IAuthenticator>();
          authenticator.IsTokenValid("").ReturnsForAnyArgs(true);
          var dataRepository = Substitute.For<IDataRepository>();
-         var item = new Item {StockCount = 0};
+         var item = new Item {StockCount = 0, Guid = Guid.NewGuid()};
          dataRepository.GetItem(new Guid()).ReturnsForAnyArgs(item);
          var service = new GildedRoseService(dataRepository, authenticator);
          var quantity = 1;
-         var result = service.BuyItem("valid", new Guid(), quantity);
+         var result = service.BuyItem("valid", item.Guid.ToString(), quantity);
          Assert.AreEqual(string.Format("There is insufficient stock to purchase {0} items.", quantity), result.Message,
             "Must receive an out of stock message");
       }
@@ -133,7 +146,7 @@ namespace GildedRose.ServiceLibrary
          var item = new Item {StockCount = 0};
          dataRepository.GetItem(new Guid()).ReturnsForAnyArgs(item);
          var service = new GildedRoseService(dataRepository, authenticator);
-         var result = service.BuyItem("valid", new Guid(), 1);
+         var result = service.BuyItem("valid", "", 1);
          Assert.AreEqual(ResponseStatus.Failed, result.Status, "Status must be set to failed when the token is invalid.");
       }
 

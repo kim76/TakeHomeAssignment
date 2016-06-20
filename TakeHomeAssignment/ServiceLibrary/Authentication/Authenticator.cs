@@ -1,9 +1,9 @@
-
 // Copyright (C) 2016 Kim Bilida All rights reserved.
 
 using System;
 using System.Security.Authentication;
 using GildedRose.ServiceLibrary.DataAccess;
+using GildedRose.ServiceLibrary.Exceptions;
 using GildedRose.ServiceLibrary.Model;
 
 namespace GildedRose.ServiceLibrary.Authentication
@@ -79,7 +79,20 @@ namespace GildedRose.ServiceLibrary.Authentication
       /// <returns></returns>
       public bool IsTokenValid(string token)
       {
-         return _userRepository.GetUser(new Guid(token)) != null;
+         bool valid = false;
+         try
+         {
+            valid = _userRepository.GetUser(new Guid(token)) != null;
+         }
+         catch (UnknownUserException)
+         {
+            //log error
+         }
+         catch (Exception)
+         {
+            //log error
+         }
+         return valid;
       }
    }
 }

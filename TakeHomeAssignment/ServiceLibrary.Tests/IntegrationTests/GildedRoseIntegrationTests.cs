@@ -30,7 +30,7 @@ namespace GildedRose.ServiceLibrary.IntegrationTests
       {
          var token = _client.RequestToken(username, password).Token;
          var totalPurchased = 0;
-         while (_client.BuyItem(token, itemId, 1).Status == ResponseStatus.Success)
+         while (_client.BuyItem(token, itemId.ToString(), 1).Status == ResponseStatus.Success)
          {
             totalPurchased++;
          }

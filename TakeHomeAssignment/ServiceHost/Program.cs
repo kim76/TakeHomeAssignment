@@ -119,7 +119,7 @@ namespace GildedRose.ServiceHost
 
             var channel = cf.CreateChannel();
             var token = channel.RequestToken(username, password).Token;
-            while (channel.BuyItem(token, itemId, 1).Status == ResponseStatus.Success)
+            while (channel.BuyItem(token, itemId.ToString(), 1).Status == ResponseStatus.Success)
             {
                totalPurchased++;
             }

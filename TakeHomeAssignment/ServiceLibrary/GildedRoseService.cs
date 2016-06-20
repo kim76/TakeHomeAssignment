@@ -71,15 +71,29 @@ namespace GildedRose.ServiceLibrary
       /// Buys required number of the item and reduces the stock accordingly.  If the entire amount is not in stock, no items are purchased.
       /// </summary>
       /// <param name="token">The token.</param>
-      /// <param name="itemId">The Guid of the item.</param>
+      /// <param name="itemId">The Guid of the item in string format.</param>
       /// <param name="quantity">The quantity to purchase.</param>
       /// <returns></returns>
-      public RequestResponse BuyItem(string token, Guid itemId, int quantity)
+      public RequestResponse BuyItem(string token, string itemId, int quantity)
       {
          RequestResponse response = new RequestResponse();
+         Guid guid;
+         if (!Guid.TryParse(itemId, out guid))
+         {
+            response.Status = ResponseStatus.Failed;
+            response.Message = string.Format("The item Id '{0}' is not a valid Guid", itemId);
+            return response;
+         }
          try
          {
-            var item = _dataRepository.GetItem(itemId);
+            Guid tokenGuid;
+            if (!Guid.TryParse(token, out tokenGuid) || !_authenticator.IsTokenValid(token))
+            {
+               response.Status = ResponseStatus.Unauthorized;
+               response.Message = "The token is invalid";
+               return response;
+            }
+            var item = _dataRepository.GetItem(guid);
             item.ReduceStock(quantity);
             response.Status = ResponseStatus.Success;
             response.Message = string.Format("Purchase of {0} items complete.", quantity);

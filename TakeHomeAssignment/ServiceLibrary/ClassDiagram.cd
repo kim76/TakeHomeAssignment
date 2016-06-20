@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GildedRose.ServiceLibrary.GildedRoseService">
+    <Position X="0.5" Y="1.25" Width="5.25" />
+    <AssociationLine Name="_dataRepository" Type="GildedRose.ServiceLibrary.DataAccess.IDataRepository">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.423" Y="0.112" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_authenticator" Type="GildedRose.ServiceLibrary.Authentication.IAuthenticator">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.456" Y="0.1" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAgAAMAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>GildedRoseService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_dataRepository" />
+      <Field Name="_authenticator" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GildedRose.ServiceLibrary.DataAccess.InMemoryDataRepository" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4.25" Width="3" />
+    <AssociationLine Name="_items" Type="GildedRose.ServiceLibrary.Model.Item">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.703" Y="0.445" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAFAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccess\InMemoryDataRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_items" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GildedRose.ServiceLibrary.DataAccess.InMemoryUserRepository" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAEAAAAAAAAAA=</HashCode>
+      <FileName>DataAccess\InMemoryUserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GildedRose.ServiceLibrary.Authentication.Authenticator" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="0.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEgAAAAAAAAAAAAAAAAAIABAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Authentication\Authenticator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_userRepository" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GildedRose.ServiceLibrary.Model.Item">
+    <Position X="8" Y="7.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQIgAAAAAAAAAAQAAAAEFAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GildedRose.ServiceLibrary.Model.RequestResponse">
+    <Position X="1.75" Y="4.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Model\RequestResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GildedRose.ServiceLibrary.Model.ItemsRequestResponse">
+    <Position X="3.5" Y="6.25" Width="2.75" />
+    <AssociationLine Name="Items" Type="GildedRose.ServiceLibrary.Model.Item">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.685" Y="1.058" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ItemsRequestResponse.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="GildedRose.ServiceLibrary.Model.TokenRequestResponse">
+    <Position X="0.5" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Model\TokenRequestResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GildedRose.ServiceLibrary.DataAccess.IDataRepository">
+    <Position X="7.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccess\IDataRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GildedRose.ServiceLibrary.Authentication.IAuthenticator">
+    <Position X="7.5" Y="1" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Authentication\IAuthenticator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GildedRose.ServiceLibrary.DataAccess.IUserRepository">
+    <Position X="16.75" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>DataAccess\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="GildedRose.ServiceLibrary.Model.ResponseStatus">
+    <Position X="4.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAABAAAAAAACA=</HashCode>
+      <FileName>Model\RequestResponse.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
