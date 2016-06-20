@@ -10,7 +10,7 @@ This project satisfies the deliverables you asked for.
  3. I chose DataContracts for the dataformat because it is easy to implement and it's what I'm familiar with from working with. 
  3. For authentication I chose a token based system to maintain a RESTful Api.  The users are managed and a valid username and password is required to retrieve a token.  This token can then be used to purchase items. 
   
-![class diagram](TakeHomeAssignment/GildedRoseClassDiagram.png)
+![class diagram](src/GildedRoseClassDiagram.png)
 
  
 **Get All Items**
