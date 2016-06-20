@@ -46,7 +46,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.pdb
-TakeHomeAssignment/ServiceLibrary.Tests/bin/Debug/GildedRose.ServiceLibrary.dll
-TakeHomeAssignment/ServiceHost/bin/Debug/GildedRose.ServiceHost.exe
+TakeHomeAssignment/ServiceLibrary.Tests/bin
+TakeHomeAssignment/ServiceLibrary.Tests/obj
+TakeHomeAssignment/ServiceLibrary/bin
+TakeHomeAssignment/ServiceLibrary/obj
+TakeHomeAssignment/ServiceHost/bin
+TakeHomeAssignment/ServiceHost/obj
 TakeHomeAssignment/.vs/GildedRose/v14/.suo
 *.exe
